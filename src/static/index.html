@@ -8,8 +8,13 @@
   </head>
   <body>
     <header>
-      <h1>Mergington High School</h1>
-      <h2>Extracurricular Activities</h2>
+      <div class="branding">
+        <h1>Mergington High School</h1>
+        <h2>Extracurricular Activities</h2>
+      </div>
+      <div class="user-controls">
+        <button id="user-icon" title="Teacher Login" aria-label="Teacher Login">👤</button>
+      </div>
     </header>
 
     <main>
@@ -21,24 +26,42 @@
         </div>
       </section>
 
-      <section id="signup-container">
-        <h3>Sign Up for an Activity</h3>
+      <section id="signup-container" class="hidden">
+        <h3>Register Student for Activity (Teacher)</h3>
         <form id="signup-form">
           <div class="form-group">
             <label for="email">Student Email:</label>
-            <input type="email" id="email" required placeholder="your-email@mergington.edu" />
+            <input type="email" id="email" required placeholder="student-email@mergington.edu" />
           </div>
           <div class="form-group">
             <label for="activity">Select Activity:</label>
             <select id="activity" required>
               <option value="">-- Select an activity --</option>
-              <!-- Activity options will be loaded here -->
             </select>
           </div>
-          <button type="submit">Sign Up</button>
+          <button type="submit">Register</button>
         </form>
         <div id="message" class="hidden"></div>
       </section>
+
+      <div id="login-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="login-title">
+        <div class="modal-content">
+          <h3 id="login-title">Teacher Login</h3>
+          <form id="login-form">
+            <div class="form-group">
+              <label for="login-username">Username:</label>
+              <input type="text" id="login-username" required />
+            </div>
+            <div class="form-group">
+              <label for="login-password">Password:</label>
+              <input type="password" id="login-password" required />
+            </div>
+            <button type="submit">Login</button>
+            <button type="button" id="login-cancel" class="secondary">Cancel</button>
+          </form>
+          <div id="login-message" class="hidden"></div>
+        </div>
+      </div>
     </main>
 
     <footer>
