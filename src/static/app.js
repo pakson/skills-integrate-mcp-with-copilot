@@ -184,10 +184,27 @@ document.addEventListener("DOMContentLoaded", () => {
       // Logout
       const token = localStorage.getItem("authToken");
       fetch("/logout", { method: "POST", headers: { Authorization: `Bearer ${token}` } })
-        .finally(() => {
-          localStorage.removeItem("authToken");
-          updateUIAuth();
-          fetchActivities();
+        .then(resp => {
+          if (resp.ok) {
+            localStorage.removeItem("authToken");
+            updateUIAuth();
+            fetchActivities();
+          } else {
+            messageDiv.textContent = "Logout failed. Please try again.";
+            messageDiv.className = "error";
+            messageDiv.classList.remove("hidden");
+            setTimeout(() => {
+              messageDiv.classList.add("hidden");
+            }, 5000);
+          }
+        })
+        .catch(() => {
+          messageDiv.textContent = "Network error. Logout failed.";
+          messageDiv.className = "error";
+          messageDiv.classList.remove("hidden");
+          setTimeout(() => {
+            messageDiv.classList.add("hidden");
+          }, 5000);
         });
     } else {
       loginModal.classList.remove("hidden");
