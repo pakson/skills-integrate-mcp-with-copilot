@@ -249,6 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("authToken", result.token);
         loginMessage.textContent = "Login successful";
         loginMessage.className = "success";
+        loginForm.reset();
         loginModal.classList.add("hidden");
         updateUIAuth();
         fetchActivities();
