@@ -217,6 +217,23 @@ document.addEventListener("DOMContentLoaded", () => {
     loginMessage.classList.add("hidden");
   });
 
+  // Close login modal on backdrop click
+  loginModal.addEventListener("click", (e) => {
+    if (e.target === loginModal) {
+      loginModal.classList.add("hidden");
+      loginForm.reset();
+      loginMessage.classList.add("hidden");
+    }
+  });
+
+  // Close login modal on Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !loginModal.classList.contains("hidden")) {
+      loginModal.classList.add("hidden");
+      loginForm.reset();
+      loginMessage.classList.add("hidden");
+    }
+  });
   loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const username = document.getElementById("login-username").value;
